@@ -12,35 +12,44 @@
 <body>
     <div class="container">
         <form class="row g-3">
+            <!-- form's title -->
             <h4 class="text-center">Eingangsrechnung erfassen</h4>
+            <!-- bill's input -->
             <div class="col-12">
               <label for="billNumber" class="form-label">Rechnungsnummer</label>
               <input type="text" class="form-control" id="billNumber" required>
             </div>
+            <!-- error's message appears when not a number is entered  -->
             <div class="error-message" id="error-message-bill"></div>
 
+            <!-- delivery date -->
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="datePicker">Rechnungsdatum</label>
                     <input type="date" id="datePicker" class="form-control" required/>
                 </div>
             </div>
+            <!-- base date -->
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="basisDatePicker">Basisdatum</label>
                     <input type="date" id="basisDatePicker" class="form-control" required/>
                 </div>
             </div>
+
+            <!-- vendor name -->
             <div class="col-12">
               <label for="supplier" class="form-label">Lieferant</label>
               <input type="text" class="form-control" id="supplier" required>
-
             </div>
+
+            <!-- head's title -->
             <div class="col-12">
               <label for="headTitle" class="form-label">Kopftext</label>
               <input type="text" class="form-control" id="headTitle" required>
-
             </div>
+
+            <!-- amounts' inputs -->
             <div class="col-12 col-md-4">
                 <label for="totalAmount" class="form-label">Bruttobetrag</label>
                 <div class="input-group">
@@ -65,6 +74,7 @@
                 </div>
                 <div class="error-message" id="error-message-tax"></div>
             </div>
+            <!-- submit button -->
             <div class="col-12">
               <button class="btn btn-primary text-uppercase" type="submit" id="saveBtn">Speichern</button>
             </div>

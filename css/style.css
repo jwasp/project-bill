@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+
+/* common style */
 * {
     padding: 0;
     margin: 0;
@@ -15,6 +17,7 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+
 .container {
     border-radius: 20px;
     margin-top: 150px;
@@ -23,6 +26,7 @@ body {
     padding: 50px;
 }
 
+/* button style */
 .btn-primary {
     display: block;
     width: 35%;
@@ -39,11 +43,18 @@ body {
     font-size: 1.3rem;
 }
 
+/* title style */
 h4 {
     font-size: 3rem;
     font-weight: 700;
 }
 
+/* error style */
+.error-message {
+    color: red;
+}
+
+/* Adaptive layout */
 @media only screen and (max-width: 764px) {
     .container {
         margin-top: 40px;
@@ -66,8 +77,4 @@ h4 {
     h4 {
         font-size: 1.5rem;
     }
-}
-
-.error-message {
-    color: red;
 }
