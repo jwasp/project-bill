@@ -9,13 +9,20 @@ const errorMsgTax = document.getElementById("error-message-tax");
 
 billValue.addEventListener("input", () => {
     errorMsgBill.innerText = isNaN(billValue.value) ? "Nur Zahlen" : "";
+    document.getElementById("saveBtn").disabled = isNaN(billValue.value);
 });
+
 totalValue.addEventListener("input", () => {
     errorMsgTotal.innerText = isNaN(totalValue.value) ? "Nur Zahlen" : "";
+    document.getElementById("saveBtn").disabled = isNaN(totalValue.value);
 });
+
 netValue.addEventListener("input", () => {
     errorMsgNet.innerText = isNaN(netValue.value) ? "Nur Zahlen" : "";
+    document.getElementById("saveBtn").disabled = isNaN(netValue.value);
 });
+
 taxValue.addEventListener("input", () => {
     errorMsgTax.innerText = isNaN(taxValue.value) ? "Nur Zahlen" : "";
+    document.getElementById("saveBtn").disabled = isNaN(taxValue.value);
 });
