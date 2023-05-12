@@ -6,6 +6,9 @@ const errorMsgBill = document.getElementById("error-message-bill");
 const errorMsgTotal = document.getElementById("error-message-total");
 const errorMsgNet = document.getElementById("error-message-net");
 const errorMsgTax = document.getElementById("error-message-tax");
+const regexp = /^(0|[1-9]\d*)(\,[0-9]{1,2})?$/;
+
+taxValue.innerText = parseFloat(totalValue.value) - parseFloat(netValue.value);
 
 billValue.addEventListener("input", () => {
     errorMsgBill.innerText = isNaN(billValue.value) ? "Nur Zahlen" : "";
@@ -13,16 +16,25 @@ billValue.addEventListener("input", () => {
 });
 
 totalValue.addEventListener("input", () => {
-    errorMsgTotal.innerText = isNaN(totalValue.value) ? "Nur Zahlen" : "";
-    document.getElementById("saveBtn").disabled = isNaN(totalValue.value);
+    errorMsgTotal.innerText = regexp.test(totalValue.value)
+        ? ""
+        : "nur Zahlen und Format 0.00";
+    document.getElementById("saveBtn").disabled = !regexp.test(
+        totalValue.value
+    );
+    taxValue.innerText =
+        totalValue.value && netValue.value
+            ? parseFloat(totalValue.value) - parseFloat(netValue.value)
+            : "";
 });
 
 netValue.addEventListener("input", () => {
-    errorMsgNet.innerText = isNaN(netValue.value) ? "Nur Zahlen" : "";
-    document.getElementById("saveBtn").disabled = isNaN(netValue.value);
-});
-
-taxValue.addEventListener("input", () => {
-    errorMsgTax.innerText = isNaN(taxValue.value) ? "Nur Zahlen" : "";
-    document.getElementById("saveBtn").disabled = isNaN(taxValue.value);
+    errorMsgNet.innerText = regexp.test(netValue.value)
+        ? ""
+        : "nur Zahlen und Format 0.00";
+    document.getElementById("saveBtn").disabled = !regexp.test(netValue.value);
+    taxValue.innerText =
+        totalValue.value && netValue.value
+            ? parseFloat(totalValue.value) - parseFloat(netValue.value)
+            : "";
 });
