@@ -8,33 +8,52 @@ const errorMsgNet = document.getElementById("error-message-net");
 const errorMsgTax = document.getElementById("error-message-tax");
 const regexp = /^(0|[1-9]\d*)(\,[0-9]{1,2})?$/;
 
-taxValue.innerText = parseFloat(totalValue.value) - parseFloat(netValue.value);
+if (totalValue.value && netValue.value) {
+    taxValue.value = parseFloat(totalValue.value) - parseFloat(netValue.value)
+};
+
+// validation of bill value
 
 billValue.addEventListener("input", () => {
     errorMsgBill.innerText = isNaN(billValue.value) ? "Nur Zahlen" : "";
     document.getElementById("saveBtn").disabled = isNaN(billValue.value);
 });
 
+// validation of total value
+
 totalValue.addEventListener("input", () => {
-    errorMsgTotal.innerText = regexp.test(totalValue.value)
+    errorMsgTotal.innerText = regexp.test(totalValue.value) || !totalValue.value
         ? ""
-        : "nur Zahlen und Format 0.00";
+        : "nur Zahlen und Format 0,00";
     document.getElementById("saveBtn").disabled = !regexp.test(
         totalValue.value
     );
-    taxValue.innerText =
-        totalValue.value && netValue.value
-            ? parseFloat(totalValue.value) - parseFloat(netValue.value)
-            : "";
+    if (totalValue.value && netValue.value) {
+        taxValue.value = parseFloat(totalValue.value) - parseFloat(netValue.value)
+    } else {
+        taxValue.value = "";
+    }
 });
 
+// validation of net value
+
 netValue.addEventListener("input", () => {
-    errorMsgNet.innerText = regexp.test(netValue.value)
+    errorMsgNet.innerText = regexp.test(netValue.value) || !netValue.value
         ? ""
-        : "nur Zahlen und Format 0.00";
+        : "nur Zahlen und Format 0,00";
     document.getElementById("saveBtn").disabled = !regexp.test(netValue.value);
-    taxValue.innerText =
-        totalValue.value && netValue.value
-            ? parseFloat(totalValue.value) - parseFloat(netValue.value)
-            : "";
+    if (totalValue.value && netValue.value) {
+        taxValue.value = parseFloat(totalValue.value) - parseFloat(netValue.value)
+    } else {
+        taxValue.value = "";
+
+    }
+});
+
+// validation of tax value
+
+taxValue.addEventListener("input", () => {
+    errorMsgTax.innerText = regexp.test(taxValue.value) || !taxValue.value
+        ? ""
+        : "nur Zahlen und Format 0,00";
 });
