@@ -25,6 +25,15 @@ const countTaxValue = (total, net) => {
     return (tax = parseFloat(total) - parseFloat(net));
 };
 
+const checkEmptyFields = () => {
+    if (!billValue.value) errorMsgBill.innerText = "Bitte ausfüllen";
+    if (!supplierValue.value) errorMsgSupplier.innerText = "Bitte ausfüllen";
+    if (!headTitleValue.value) errorMsgHeadTitle.innerText = "Bitte ausfüllen";
+    if (!totalValue.value) errorMsgTotal.innerText = "Bitte ausfüllen";
+    if (!netValue.value) errorMsgNet.innerText = "Bitte ausfüllen";
+    if (!taxValue.value) errorMsgTax.innerText = "Bitte ausfüllen";
+}
+
 if (totalValue.value && netValue.value) {
     taxValue = countTaxValue(totalValue.value, netValue.value);
 }
