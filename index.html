@@ -1,91 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <title>Saving Bill</title>
-</head>
-<body>
-    <div class="container">
-        <form class="row g-3">
-            <!-- form's title -->
-            <h4 class="text-center">Eingangsrechnung erfassen</h4>
-            <!-- bill's input -->
-            <div class="col-12">
-              <label for="billNumber" class="form-label">Rechnungsnummer</label>
-              <input type="text" class="form-control" id="billNumber" required>
-            </div>
-            <!-- error's message appears when not a number is entered  -->
-            <div class="error-message" id="error-message-bill"></div>
-
-            <!-- delivery date -->
-            <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label for="datePicker">Rechnungsdatum</label>
-                    <input type="date" id="datePicker" class="form-control" required/>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+        <title>Saving Bill</title>
+    </head>
+    <body>
+        <div class="container">
+            <form class="row g-3">
+                <!-- form's title -->
+                <h4 class="text-center">Eingangsrechnung erfassen</h4>
+                <!-- bill's input -->
+                <div class="col-12">
+                    <label for="billNumber" class="form-label"
+                        >Rechnungsnummer</label
+                    >
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="billNumber"
+                        required
+                    />
                 </div>
-            </div>
-            <!-- base date -->
-            <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label for="basisDatePicker">Basisdatum</label>
-                    <input type="date" id="basisDatePicker" class="form-control" required/>
+                <!-- error's message appears when not a number is entered  -->
+                <div class="error-message" id="error-message-bill"></div>
+
+                <!-- delivery date -->
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="datePicker">Rechnungsdatum</label>
+                        <input
+                            type="date"
+                            id="datePicker"
+                            class="form-control"
+                            required
+                        />
+                    </div>
                 </div>
-            </div>
-
-            <!-- vendor name -->
-            <div class="col-12">
-              <label for="supplier" class="form-label">Lieferant</label>
-              <input type="text" class="form-control" id="supplier" required>
-            </div>
-
-            <div class="error-message" id="error-message-supplier"></div>
-
-            <!-- head's title -->
-            <div class="col-12">
-              <label for="headTitle" class="form-label">Kopftext</label>
-              <input type="text" class="form-control" id="headTitle" required>
-            </div>
-
-            <div class="error-message" id="error-message-headTitle"></div>
-
-            <!-- amounts' inputs -->
-            <div class="col-12 col-md-4">
-                <label for="totalAmount" class="form-label">Bruttobetrag</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="totalAmount" required>
-                    <span class="input-group-text" id="inputGroupPrepend">€</span>
+                <!-- base date -->
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="basisDatePicker">Basisdatum</label>
+                        <input
+                            type="date"
+                            id="basisDatePicker"
+                            class="form-control"
+                            required
+                        />
+                    </div>
                 </div>
-                <div class="error-message" id="error-message-total"></div>
-            </div>
-            <div class="col-12 col-md-4">
-                <label for="netAmount" class="form-label">Nettobetrag</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="netAmount" required>
-                    <span class="input-group-text">€</span>
+
+                <!-- vendor name -->
+                <div class="col-12">
+                    <label for="supplier" class="form-label">Lieferant</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="supplier"
+                        required
+                    />
                 </div>
-                <div class="error-message" id="error-message-net"></div>
-            </div>
-            <div class="col-12 col-md-4">
-                <label for="taxAmount" class="form-label">Steuerbetrag</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="taxAmount" required>
-                    <span class="input-group-text">€</span>
+
+                <div class="error-message" id="error-message-supplier"></div>
+
+                <!-- head's title -->
+                <div class="col-12">
+                    <label for="headTitle" class="form-label">Kopftext</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="headTitle"
+                        required
+                    />
                 </div>
-                <div class="error-message" id="error-message-tax"></div>
-            </div>
-            <!-- submit button -->
-            <div class="col-12">
-              <button class="btn btn-primary text-uppercase" type="submit" id="saveBtn">Speichern</button>
-            </div>
-          </form>
-    </div>
-    
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
-</body>
+
+                <div class="error-message" id="error-message-headTitle"></div>
+
+                <!-- amounts' inputs -->
+                <div class="col-12 col-md-4">
+                    <label for="totalAmount" class="form-label"
+                        >Bruttobetrag</label
+                    >
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="totalAmount"
+                            required
+                        />
+                        <span class="input-group-text" id="inputGroupPrepend"
+                            >€</span
+                        >
+                    </div>
+                    <div class="error-message" id="error-message-total"></div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="netAmount" class="form-label"
+                        >Nettobetrag</label
+                    >
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="netAmount"
+                            required
+                        />
+                        <span class="input-group-text">€</span>
+                    </div>
+                    <div class="error-message" id="error-message-net"></div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="taxAmount" class="form-label"
+                        >Steuerbetrag</label
+                    >
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="taxAmount"
+                            required
+                        />
+                        <span class="input-group-text">€</span>
+                    </div>
+                    <div class="error-message" id="error-message-tax"></div>
+                </div>
+                <!-- submit button -->
+                <div class="col-12">
+                    <button
+                        class="btn btn-primary text-uppercase"
+                        type="submit"
+                        id="saveBtn"
+                        onclick="checkEmptyFields()"
+                    >
+                        Speichern
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
