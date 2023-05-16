@@ -25,6 +25,16 @@ const countTaxValue = (total, net) => {
     return (tax = parseFloat(total) - parseFloat(net));
 };
 
+const countNetValue = (total, tax) => {
+    // errorMsgTax.innerText = "";
+    return (net = parseFloat(total) - parseFloat(tax));
+};
+
+const countTotalValue = (net, tax) => {
+    // errorMsgTax.innerText = "";
+    return (total = parseFloat(net) + parseFloat(tax));
+};
+
 const checkEmptyFields = () => {
     if (!billValue.value) errorMsgBill.innerText = "Bitte ausfüllen";
     if (!supplierValue.value) errorMsgSupplier.innerText = "Bitte ausfüllen";
@@ -55,7 +65,9 @@ supplierValue.addEventListener("input", () => {
 // validation of head title value
 
 headTitleValue.addEventListener("input", () => {
-    errorMsgHeadTitle.innerText = (!headTitleValue.value) ? "Bitte ausfüllen" : "";
+    errorMsgHeadTitle.innerText = !headTitleValue.value
+        ? "Bitte ausfüllen"
+        : "";
 });
 
 // validation of total value
@@ -64,7 +76,11 @@ totalValue.addEventListener("input", () => {
     errorMsgTotal.innerText = regexp.test(totalValue.value)
         ? ""
         : "nur Zahlen und Format 0,00";
-    if (!totalValue.value) errorMsgTotal.innerText = "Bitte ausfüllen";
+    if (!totalValue.value) {
+        errorMsgTotal.innerText = "Bitte ausfüllen";
+        taxValue.value = "";
+        errorMsgTax.innerText = "Bitte ausfüllen";
+    }
     blockButton(totalValue.value);
     if (
         totalValue.value &&
@@ -73,8 +89,16 @@ totalValue.addEventListener("input", () => {
         !errorMsgNet.innerText
     ) {
         taxValue.value = countTaxValue(totalValue.value, netValue.value);
-    } else {
-        taxValue.value = "";
+    }
+
+    else if (
+        taxValue.value &&
+        totalValue.value &&
+        !errorMsgTax.innerText &&
+        !errorMsgTotal.innerText
+    ) {
+        netValue.value = countNetValue(totalValue.value, taxValue.value);
+        errorMsgNet.innerText = "";
     }
 });
 
@@ -84,27 +108,57 @@ netValue.addEventListener("input", () => {
     errorMsgNet.innerText = regexp.test(netValue.value)
         ? ""
         : "nur Zahlen und Format 0,00";
-    if (!netValue.value) errorMsgNet.innerText = "Bitte ausfüllen";
+    if (!netValue.value) {
+        errorMsgNet.innerText = "Bitte ausfüllen";
+        taxValue.value = "";
+        errorMsgTax.innerText = "Bitte ausfüllen";
+    }
     blockButton(netValue.value);
     if (
         totalValue.value &&
         netValue.value &&
         !errorMsgNet.innerText &&
         !errorMsgTotal.innerText
-    )
-        taxValue.value = countTaxValue(totalValue.value, netValue.value);
-    else {
-        taxValue.value = "";
+    ) taxValue.value = countTaxValue(totalValue.value, netValue.value);
+
+    else if (
+        taxValue.value &&
+        netValue.value &&
+        !errorMsgNet.innerText &&
+        !errorMsgTax.innerText
+    ) {
+        totalValue.value = countTotalValue(taxValue.value, netValue.value);
+        errorMsgTotal.innerText = "";
     }
 });
 
 // validation of tax value
 
 taxValue.addEventListener("input", () => {
-    errorMsgTax.innerText =
-        regexp.test(taxValue.value)
-            ? ""
-            : "nur Zahlen und Format 0,00";
+    errorMsgTax.innerText = regexp.test(taxValue.value)
+        ? ""
+        : "nur Zahlen und Format 0,00";
     if (!taxValue.value) errorMsgTax.innerText = "Bitte ausfüllen";
     blockButton(taxValue.value);
+
+    if (
+        taxValue.value &&
+        netValue.value &&
+        !errorMsgNet.innerText &&
+        !errorMsgTax.innerText
+    ) {
+        totalValue.value = countTotalValue(taxValue.value, netValue.value);
+        errorMsgTotal.innerText = "";
+    }
+
+    else if (
+        !netValue.value &&
+        taxValue.value &&
+        totalValue.value &&
+        !errorMsgTax.innerText &&
+        !errorMsgTotal.innerText
+    ) {
+        netValue.value = countNetValue(totalValue.value, taxValue.value);
+        errorMsgNet.innerText = "";
+    }
 });
