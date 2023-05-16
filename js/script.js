@@ -59,7 +59,7 @@ billValue.addEventListener("input", () => {
 // validation of supplier value
 
 supplierValue.addEventListener("input", () => {
-    errorMsgSupplier.innerText = (!supplierValue.value) ? "Bitte ausfüllen" : "";
+    errorMsgSupplier.innerText = !supplierValue.value ? "Bitte ausfüllen" : "";
 });
 
 // validation of head title value
@@ -89,9 +89,7 @@ totalValue.addEventListener("input", () => {
         !errorMsgNet.innerText
     ) {
         taxValue.value = countTaxValue(totalValue.value, netValue.value);
-    }
-
-    else if (
+    } else if (
         taxValue.value &&
         totalValue.value &&
         !errorMsgTax.innerText &&
@@ -119,17 +117,20 @@ netValue.addEventListener("input", () => {
         netValue.value &&
         !errorMsgNet.innerText &&
         !errorMsgTotal.innerText
-    ) taxValue.value = countTaxValue(totalValue.value, netValue.value);
-
-    else if (
-        taxValue.value &&
-        netValue.value &&
-        !errorMsgNet.innerText &&
-        !errorMsgTax.innerText
-    ) {
-        totalValue.value = countTotalValue(taxValue.value, netValue.value);
-        errorMsgTotal.innerText = "";
-    }
+    )
+        taxValue.value = countTaxValue(totalValue.value, netValue.value);
+    setTimeout(() => {
+        if (
+            !totalValue.value &&
+            taxValue.value &&
+            netValue.value &&
+            !errorMsgNet.innerText &&
+            !errorMsgTax.innerText
+        ) {
+            totalValue.value = countTotalValue(taxValue.value, netValue.value);
+            errorMsgTotal.innerText = "";
+        }
+    }, 3000);
 });
 
 // validation of tax value
@@ -150,15 +151,16 @@ taxValue.addEventListener("input", () => {
         totalValue.value = countTotalValue(taxValue.value, netValue.value);
         errorMsgTotal.innerText = "";
     }
-
-    else if (
-        !netValue.value &&
-        taxValue.value &&
-        totalValue.value &&
-        !errorMsgTax.innerText &&
-        !errorMsgTotal.innerText
-    ) {
-        netValue.value = countNetValue(totalValue.value, taxValue.value);
-        errorMsgNet.innerText = "";
-    }
+    setTimeout(() => {
+        if (
+            !netValue.value &&
+            taxValue.value &&
+            totalValue.value &&
+            !errorMsgTax.innerText &&
+            !errorMsgTotal.innerText
+        ) {
+            netValue.value = countNetValue(totalValue.value, taxValue.value);
+            errorMsgNet.innerText = "";
+        }
+    }, 3000);
 });
